@@ -1,0 +1,73 @@
+<div class="form-container m-3">
+  <h2 class="mb-4">Here you can search for a Pokemon:</h2>
+  <form (ngSubmit)="getPokemon()">
+    <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden">
+      <input
+        type="text"
+        class="form-control border-0 py-3 px-4"
+        placeholder="Type Pokemon's Name or Id ..."
+        aria-label="Search term"
+        [(ngModel)]="pokemonName"
+        name="pokemonName"
+      />
+      <button class="btn btn-primary px-4 search-btn" type="submit">
+        I Choose You!
+      </button>
+    </div>
+  </form>
+</div>
+
+<div *ngIf="loading" class="loading">Searching for a Pokemon...</div>
+<div *ngIf="error" class="error-message">
+  {{ error }}
+</div>
+
+@for (item of pokemonItem; track item.id) {
+<div class="card-group m-3">
+  <div class="card border bg-{{ getType(item) }}" style="width: 18rem">
+    <img
+      [src]="item.sprites.front_default"
+      alt="Pokemon Image"
+      class="card-img-top"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ item.name | titlecase }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item bg-transparent">ID: {{ item.id }}</li>
+      <li class="list-group-item bg-transparent">
+        Height: {{ item.height / 10 }} m
+      </li>
+      <li class="list-group-item bg-transparent">
+        Weight: {{ item.weight * 0.1 }} kg
+      </li>
+      <li class="list-group-item bg-transparent">Type: {{ getType(item) }}</li>
+    </ul>
+  </div>
+
+  <div class="card w-50 border">
+    <div class="card-body">
+      <h4 class="card-title">Stats</h4>
+      <div *ngFor="let stat of item.stats" class="row mt-3">
+        <div class="">
+          <h6 class="text-sm-start mt-1">{{ stat.stat.name | titlecase }}</h6>
+        </div>
+        <div class="">
+          <div class="progress" style="height: 30px">
+            <div
+              class="progress-bar progress-bar-striped bg-{{ getType(item) }}"
+              role="progressbar"
+              style="height: 30px"
+              [style.width]="stat.base_stat + '%'"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <b>{{ stat.base_stat }}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+}

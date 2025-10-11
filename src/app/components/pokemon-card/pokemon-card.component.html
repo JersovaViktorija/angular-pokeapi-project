@@ -1,0 +1,20 @@
+@for (item of pokemonItem; track item.id) {
+<div class="card" style="width: 18rem">
+  <img
+    [src]="item.sprites.front_default"
+    alt="Pokemon Image"
+    class="card-img-top"
+  />
+  <div class="card-body">
+    <h5 class="card-title">{{ item.name }}</h5>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">ID: {{ item.id }}</li>
+    <li class="list-group-item">Height: {{ item.height / 10 }} m</li>
+    <li class="list-group-item">Weight: {{ item.weight * 0.1 }} kg</li>
+    <li class="list-group-item">Type: {{ item.types[0].type.name }}</li>
+    <li class="list-group-item">Stats: {{ item.stats }}</li>
+  </ul>
+</div>
+
+}
