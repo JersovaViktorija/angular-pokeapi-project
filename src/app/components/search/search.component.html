@@ -1,15 +1,17 @@
-<div class="form-container">
-  <h2 class="mb-4">Here you can search for a Pokemon</h2>
-  <form>
+<div class="form-container m-3">
+  <h2 class="mb-4">Here you can search for a Pokemon:</h2>
+  <form (ngSubmit)="onSearch()">
     <div class="input-group mb-3 shadow-sm rounded-pill overflow-hidden">
       <input
         type="text"
         class="form-control border-0 py-3 px-4"
         placeholder="Type Pokemon's Name or Id ..."
         aria-label="Search term"
+        [(ngModel)]="pokemonName"
+        name="pokemonName"
       />
-      <button class="btn btn-primary px-4 search-btn" type="button">
-        Search
+      <button class="btn btn-primary px-4 search-btn" type="submit">
+        I Choose You!
       </button>
     </div>
   </form>

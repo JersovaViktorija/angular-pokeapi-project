@@ -1,32 +1,21 @@
-import { Component, inject, input, OnInit, signal } from '@angular/core';
+import { Component, inject, Input, input, OnInit, signal } from '@angular/core';
 import { PokemonService } from '../../servers/pokemon.service';
 import { catchError } from 'rxjs';
-import { PokemonModel } from '../../model/pokemon';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-pokemon-card',
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './pokemon-card.component.html',
   styleUrl: './pokemon-card.component.css',
 })
-export class PokemonCardComponent implements OnInit {
-  pokemonName = input('clefairy');
-  pokemonService = inject(PokemonService);
-  pokemonItem: any[] = [];
+export class PokemonCardComponent {
+  @Input() pokemon: any;
 
-  ngOnInit(): void {
-    this.pokemonService
-      .getOnePokemon(this.pokemonName())
-      .pipe(
-        catchError((err) => {
-          console.log(err);
-          throw err;
-        })
-      )
-      .subscribe((pokemon) => {
-        console.log(pokemon);
-
-        this.pokemonItem.push(pokemon);
-      });
+  getType(pokemon: any): string {
+    return pokemon && pokemon.types.length > 0
+      ? pokemon.types[0].type.name
+      : '';
   }
 }
