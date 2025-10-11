@@ -1,20 +1,51 @@
-@for (item of pokemonItem; track item.id) {
-<div class="card" style="width: 18rem">
-  <img
-    [src]="item.sprites.front_default"
-    alt="Pokemon Image"
-    class="card-img-top"
-  />
-  <div class="card-body">
-    <h5 class="card-title">{{ item.name }}</h5>
+<div class="card-group m-3">
+  <div class="card border bg-{{ getType(pokemon) }}" style="width: 18rem">
+    <img
+      [src]="pokemon.sprites.front_default"
+      alt="Pokemon Image"
+      class="card-img-top"
+    />
+    <div class="card-body">
+      <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+      <li class="list-group-pokemon bg-transparent">ID: {{ pokemon.id }}</li>
+      <li class="list-group-pokemon bg-transparent">
+        Height: {{ pokemon.height / 10 }} m
+      </li>
+      <li class="list-group-pokemon bg-transparent">
+        Weight: {{ pokemon.weight * 0.1 }} kg
+      </li>
+      <li class="list-group-pokemon bg-transparent">
+        Type: {{ getType(pokemon) }}
+      </li>
+    </ul>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item">ID: {{ item.id }}</li>
-    <li class="list-group-item">Height: {{ item.height / 10 }} m</li>
-    <li class="list-group-item">Weight: {{ item.weight * 0.1 }} kg</li>
-    <li class="list-group-item">Type: {{ item.types[0].type.name }}</li>
-    <li class="list-group-item">Stats: {{ item.stats }}</li>
-  </ul>
-</div>
 
-}
+  <div class="card w-50 border">
+    <div class="card-body">
+      <h4 class="card-title">Stats</h4>
+      <div *ngFor="let stat of pokemon.stats" class="row mt-3">
+        <div class="">
+          <h6 class="text-sm-start mt-1">{{ stat.stat.name | titlecase }}</h6>
+        </div>
+        <div class="">
+          <div class="progress" style="height: 30px">
+            <div
+              class="progress-bar progress-bar-striped bg-{{
+                getType(pokemon)
+              }}"
+              role="progressbar"
+              style="height: 30px"
+              [style.width]="stat.base_stat + '%'"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <b>{{ stat.base_stat }}</b>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

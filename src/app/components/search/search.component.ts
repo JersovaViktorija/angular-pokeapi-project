@@ -9,4 +9,10 @@ import { FormsModule } from '@angular/forms';
 })
 export class SearchComponent {
   @Output() search = new EventEmitter<string>();
+  pokemonName: string = '';
+
+  onSearch() {
+    if (!this.pokemonName.trim()) return;
+    this.search.emit(this.pokemonName.toLowerCase());
+  }
 }
