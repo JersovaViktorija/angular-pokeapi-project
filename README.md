@@ -1,4 +1,6 @@
 # Pokémon Search App
+### 🔗 Live Demo: https://poke-api-412ee.web.app/
+
 A simple Angular application built for a coding challenge, allowing users to search for Pokémon by name or ID.
 The app fetches live data from the [PokéAPI](https://pokeapi.co/)
  and displays detailed Pokémon information.
