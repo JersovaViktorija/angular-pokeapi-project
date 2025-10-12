@@ -1,64 +1,64 @@
-# AngularCrudProject
+# Pokémon Search App
+### 🔗 Live Demo: https://poke-api-412ee.web.app/
+
+A simple Angular application built for a coding challenge, allowing users to search for Pokémon by name or ID.
+The app fetches live data from the [PokéAPI](https://pokeapi.co/)
+ and displays detailed Pokémon information.
 
 ## Technologies
 
-Angular
-Styling: Bootstrap
+| Technology            | Purpose             |
+| --------------------- | ------------------- |
+| **Angular 17+**       | Front-end framework |
+| **TypeScript**        | Language            |
+| ** HttpClient** | Data fetching       |
+| **Bootstrap**         | Styling             |
+| **PokéAPI**           | Data source         |
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.17.
 
-## Development server
+## Features
 
-To start a local development server, run:
+- 🔍 Search Pokémon by name or ID
+- 🧱 Modular architecture with separated components:
+  - ```SearchComponent``` – handles user input
+  - ```PokemonCardComponent``` – displays Pokémon data
+  - ```ErrorMessageComponent``` – shows user-friendly error messages with a developer contact image
+- ⚡ Real-time API integration using Angular HttpClient
+- 🎨 Responsive UI built with Bootstrap and Angular best practices
+- 🧹 Clean state management – only one Pokémon is shown per search
 
-```bash
+## How It Works
+
+1. User enters a Pokémon **name** or **ID** in the search bar.
+2. The ```SearchComponent``` emits the value to HomeComponent.
+3. The ```HomeComponent``` calls the PokéAPI service to fetch the Pokémon.
+4. On success → a ```PokemonCardComponen```t renders the Pokémon details.
+5. On error → an ```ErrorMessageComponent``` shows a friendly message with CV image.
+
+## 🧪 Example Search
+| Input            | Result             |
+| --------------------- | ------------------- |
+| **charmeleon**       | Displays Pikachu’s card |
+| **150**        | Displays Pikachu’s card  |
+| **xyz123**         | Shows “Pokémon not found. Please contact the developer.” |
+
+## 🧑‍💻 Setup & Run Locally
+1. Clone the repository
+```
+git clone https://github.com/yourusername/pokemon-search-challenge.git
+cd pokemon-search-challenge
+```
+
+2. Install dependencies
+```
+npm install
+```
+
+3. Start the development server
+```
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
 
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Then open http://localhost:4200/
+ in your browser.
