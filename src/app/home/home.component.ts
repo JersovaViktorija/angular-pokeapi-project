@@ -5,35 +5,42 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { SearchComponent } from '../components/search/search.component';
 import { PokemonCardComponent } from '../components/pokemon-card/pokemon-card.component';
+import { ErrorComponent } from '../components/error/error.component';
 
 @Component({
   selector: 'app-home',
-  imports: [FormsModule, CommonModule, SearchComponent, PokemonCardComponent],
+  imports: [
+    FormsModule,
+    CommonModule,
+    SearchComponent,
+    PokemonCardComponent,
+    ErrorComponent,
+  ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css',
 })
 export class HomeComponent implements OnInit {
   pokemonItem: any[] = [];
   loading: boolean = false;
-  error: string = '';
+  error: boolean = false;
 
   constructor(private pokemonService: PokemonService) {}
 
   ngOnInit(): void {
     this.loading = false;
-    this.error = '';
+    this.error = false;
   }
 
   getPokemon(name: string) {
     this.loading = true;
-    this.error = '';
+    this.error = false;
     this.pokemonItem = [];
     this.pokemonService
       .getOnePokemon(name.toLowerCase())
       .pipe(
         catchError((err) => {
           this.loading = false;
-          this.error = 'Pokémon is not found. Please try again.';
+          this.error = true;
           console.log(err);
           throw err;
         })

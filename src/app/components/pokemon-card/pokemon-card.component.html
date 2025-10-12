@@ -1,28 +1,31 @@
-<div class="card-group m-3">
-  <div class="card border bg-{{ getType(pokemon) }}" style="width: 18rem">
+<div class="card-group container mh-100">
+  <div class="card border bg-{{ getType(pokemon) }} mr-3">
     <img
       [src]="pokemon.sprites.front_default"
       alt="Pokemon Image"
       class="card-img-top"
+      style="width: 18rem"
     />
     <div class="card-body">
       <h5 class="card-title">{{ pokemon.name | titlecase }}</h5>
     </div>
     <ul class="list-group list-group-flush">
-      <li class="list-group-pokemon bg-transparent">ID: {{ pokemon.id }}</li>
-      <li class="list-group-pokemon bg-transparent">
+      <li class="list-group-pokemon bg-transparent px-3 py-1">
+        ID: {{ pokemon.id }}
+      </li>
+      <li class="list-group-pokemon bg-transparent px-3 py-1">
         Height: {{ pokemon.height / 10 }} m
       </li>
-      <li class="list-group-pokemon bg-transparent">
+      <li class="list-group-pokemon bg-transparent px-3 py-1">
         Weight: {{ pokemon.weight * 0.1 }} kg
       </li>
-      <li class="list-group-pokemon bg-transparent">
+      <li class="list-group-pokemon bg-transparent px-3 py-1">
         Type: {{ getType(pokemon) }}
       </li>
     </ul>
   </div>
 
-  <div class="card w-50 border">
+  <div class="card border mr-3">
     <div class="card-body">
       <h4 class="card-title">Stats</h4>
       <div *ngFor="let stat of pokemon.stats" class="row mt-3">

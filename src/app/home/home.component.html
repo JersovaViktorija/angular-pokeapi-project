@@ -2,9 +2,9 @@
   <app-search (search)="getPokemon($event)"></app-search>
 </div>
 
-<div *ngIf="loading" class="loading">Searching for a Pokemon...</div>
+<h3 *ngIf="loading" class="loading m-3">Searching for a Pokemon...</h3>
 <div *ngIf="error" class="error-message">
-  {{ error }}
+  <app-error></app-error>
 </div>
 
 <div *ngIf="pokemonItem.length">
