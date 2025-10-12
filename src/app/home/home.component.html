@@ -2,13 +2,16 @@
   <app-search (search)="getPokemon($event)"></app-search>
 </div>
 
-<h3 *ngIf="loading" class="loading m-3">Searching for a Pokemon...</h3>
-<div *ngIf="error" class="error-message">
+@if (loading) {
+<h3 class="loading m-3">Searching for a Pokemon...</h3>
+} @else if (error) {
+<div class="error-message">
   <app-error></app-error>
 </div>
-
-<div *ngIf="pokemonItem.length">
-  @for (item of pokemonItem; track item.id) {
-  <app-pokemon-card [pokemon]="item"></app-pokemon-card>
-  }
+} @else if (pokemonItem.length) { @for (item of pokemonItem; track item.id) {
+<app-pokemon-card [pokemon]="item"></app-pokemon-card>
+} } @else {
+<div class="m-3 card">
+  <img src="/pokemon.avif" alt="Developer CV" class="card-img-top" />
 </div>
+}
