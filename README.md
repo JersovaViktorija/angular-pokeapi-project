@@ -11,7 +11,7 @@ The app fetches live data from the [PokéAPI](https://pokeapi.co/)
 | --------------------- | ------------------- |
 | **Angular 17+**       | Front-end framework |
 | **TypeScript**        | Language            |
-| ** HttpClient** | Data fetching       |
+| **HttpClient** | Data fetching       |
 | **Bootstrap**         | Styling             |
 | **PokéAPI**           | Data source         |
 
